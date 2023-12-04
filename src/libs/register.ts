@@ -20,10 +20,10 @@ export async function Register (data: UserModel) {
 
   try {
     const emailAlreadyExists = await db.user.findUnique({
-      where: { email } 
+      where: { email }
     })
 
-    if (emailAlreadyExists) {
+    if (emailAlreadyExists !== undefined || emailAlreadyExists !== null) {
       throw new Error('El usuario ya existe')
     }
 
@@ -31,7 +31,7 @@ export async function Register (data: UserModel) {
       where: { username }
     })
 
-    if (usernameAlreadyExists) {
+    if (usernameAlreadyExists !== undefined || usernameAlreadyExists !== null) {
       throw new Error('El nombre de usuario ya existe')
     }
 

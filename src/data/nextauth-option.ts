@@ -12,8 +12,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email', placeholder: 'Email' },
         password: { label: 'Contraseña', type: 'password', placeholder: 'Contraseña' }
       },
-      async authorize (credentials, req) {
-
+      async authorize (credentials) {
         if (credentials?.email === null || credentials?.email === undefined) {
           throw new Error('Credenciales invalidas')
         }
@@ -36,12 +35,22 @@ export const authOptions: NextAuthOptions = {
           throw new Error('Credenciales invalidas')
         }
 
-        return user
+        const sessionUser = {
+          id: user.id.toString(),
+          email: user.email,
+          name: user.name,
+          username: user.username,
+          role: user.role as 'user' | 'admin',
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt
+        }
+
+        return sessionUser as UserModel
       }
     })
   ],
   callbacks: {
-    jwt ({ account, token, user, profile, session }) {
+    jwt ({ token, user }) {
       if (user !== undefined) token.user = user
       return token
     },
