@@ -1,0 +1,5 @@
+{
+    "bracketSpacing":true,
+    "bracketSameLine": true,
+    "arrowParens": "always"
+}

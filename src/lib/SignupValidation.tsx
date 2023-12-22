@@ -11,4 +11,3 @@ const SignupValidation = z.object({
 })
 
 export default SignupValidation;
- 

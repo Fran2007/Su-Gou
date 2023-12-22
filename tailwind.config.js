@@ -2,20 +2,20 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      spacing: {
+        '2px': '2px',
+      },
+      boxShadow: {
+        custmom:
+          "0 4px 6px 0 hsla(0, 0%m 0.1), 0 1px 3px 0 hsla(0, 0%, 0%, 0.06)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -72,5 +72,16 @@ module.exports = {
       },
     },
   },
+  variants: {},
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
+  purge: {
+    content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+    options: {
+      safelist: ["translate-x-[-2px]"],
+    },
+  },
   plugins: [require("tailwindcss-animate")],
-}
+};
